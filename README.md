@@ -10,7 +10,7 @@
 1. Clone this boilerplate
 
 ```bash
-git clone git@github.com:msfidelis/microservice-cloudnative-boilerplate.git
+git clone git@github.com:msfidelis/cloud-native-microservice-boilerplate.git
 ```
 
 2. Change project name
