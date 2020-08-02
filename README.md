@@ -20,10 +20,44 @@ git clone git@github.com:msfidelis/cloud-native-microservice-boilerplate.git
 * Search for `change-me` in project folder
 * Change for your project name
 
-## Developer mode
+## Developer mode (live reload with Air)
 
 ```sh
 docker-compose up --force-recreate
+```
+
+```
+change-me_1  | 
+change-me_1  |   __    _   ___  
+change-me_1  |  / /\  | | | |_) 
+change-me_1  | /_/--\ |_| |_| \_ v1.12.1 // live reload for Go apps, with Go1.14.0
+change-me_1  | 
+change-me_1  | watching .
+change-me_1  | watching configs
+change-me_1  | watching controllers
+change-me_1  | watching controllers/healthcheck
+change-me_1  | watching controllers/version
+change-me_1  | watching models
+change-me_1  | watching models/foo
+change-me_1  | watching pkg
+change-me_1  | watching pkg/configuration
+change-me_1  | watching pkg/system
+change-me_1  | !exclude tmp
+change-me_1  | building...
+```
+### Testing 
+
+```sh
+curl 0.0.0.0:8080/version -i
+```
+
+```
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Sun, 02 Aug 2020 22:06:54 GMT
+Content-Length: 16
+
+{"version":"v1"}
 ```
 
 ## Production Image
@@ -32,7 +66,7 @@ docker-compose up --force-recreate
 docker build -t newproject .
 ```
 
-## Project Structure 
+## Project Structure
 
 ```
 .
