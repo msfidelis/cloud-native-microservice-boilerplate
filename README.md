@@ -32,6 +32,28 @@ docker-compose up --force-recreate
 docker build -t newproject .
 ```
 
+## Project Structure 
+
+```
+.
+├── Dockerfile (Production golang Dockerfile - Multistage Build)
+├── Dockerfile.dev (Development golang Dockerfile - With Air)
+├── LICENSE
+├── README.md
+├── controllers (controller folder)
+│   ├── healthcheck (controller name / context)
+│   │   └── main.go (main module for controller)
+│   └── version
+│       └── main.go
+├── docker-compose.yml (docker-compose for development environment)
+├── go.mod
+├── go.sum
+├── pkg (Shared libs folder)
+│   └── system (Lib Context / Name)
+│       └── main.go (Main module for package)
+└── main.go (Entrypoint / Routes)
+```
+
 ## Author
 
 👤 **Matheus Fidelis**
