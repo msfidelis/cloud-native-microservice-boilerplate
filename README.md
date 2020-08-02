@@ -40,6 +40,10 @@ docker build -t newproject .
 ├── Dockerfile.dev (Development golang Dockerfile - With Air)
 ├── LICENSE
 ├── README.md
+├── configs (unsensitive configuration files)
+│   ├── dev.json
+│   ├── prod.json
+│   └── test.json
 ├── controllers (controller folder)
 │   ├── healthcheck (controller name / context)
 │   │   └── main.go (main module for controller)
@@ -49,8 +53,10 @@ docker build -t newproject .
 ├── go.mod
 ├── go.sum
 ├── pkg (Shared libs folder)
-│   └── system (Lib Context / Name)
-│       └── main.go (Main module for package)
+│   ├── configuration (Lib Context / Name)
+│   │   └── main.go (Main module for package)
+│   └── system
+│       └── main.go
 └── main.go (Entrypoint / Routes)
 ```
 
