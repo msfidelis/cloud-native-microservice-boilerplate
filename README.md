@@ -63,7 +63,7 @@ Content-Length: 16
 ## Unit Tests 
 
 ```bash
-ENVIRONMENT=test go test -v
+ENVIRONMENT=test go test -v -cover
 ```
 
 
