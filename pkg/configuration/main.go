@@ -20,7 +20,6 @@ func Load() Configuration {
 		env = "prod"
 	}
 	path := fmt.Sprintf("configs/%s.json", strings.ToLower(env))
-	fmt.Println(path)
 	err := gonfig.GetConf(path, &configuration)
 	if err != nil {
 		panic(err)

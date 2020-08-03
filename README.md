@@ -60,6 +60,13 @@ Content-Length: 16
 {"version":"v1"}
 ```
 
+## Unit Tests 
+
+```bash
+ENVIRONMENT=test go test -v
+```
+
+
 ## Production Image
 
 ```sh
