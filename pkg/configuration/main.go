@@ -9,8 +9,9 @@ import (
 )
 
 type Configuration struct {
-	Env     string
-	Version string
+	Env         string
+	Version     string
+	Application string
 }
 
 func Load() Configuration {

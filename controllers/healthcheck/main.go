@@ -6,8 +6,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type Response struct {
+	Status int `json:"statys" binding:"required"`
+}
+
 func Ok(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"status": http.StatusOK,
-	})
+	var response Response
+	response.Status = http.StatusOK
+	c.JSON(http.StatusOK, response)
 }

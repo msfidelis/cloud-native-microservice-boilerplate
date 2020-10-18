@@ -1,4 +1,5 @@
 {
+    "Application": "change-me",
     "Env": "prod",
     "Version": "v1"
 }
