@@ -3,11 +3,9 @@ FROM golang:1.15 AS builder
 # Install Air
 RUN go get -u github.com/cosmtrek/air
 
-WORKDIR $GOPATH/src/change-me
+WORKDIR $GOPATH/src/chip
 
 COPY . ./
-
-RUN go get -u
 
 RUN pwd; ls -lha
 
