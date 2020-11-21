@@ -101,6 +101,28 @@ docker build -t newproject .
 └── main.go (Entrypoint / Routes)
 ```
 
+## Features 
+
+### Chaos Monkey 
+
+This boilerplate works with a side-project called [gin-chaos-monkey](https://github.com/msfidelis/gin-chaos-monkey).
+
+You can enable chaos assaults in your app setting some environment variables in runtime, like:
+
+```yml 
+// ... 
+    environment:
+      - ENVIRONMENT=dev
+      - CHAOS_MONKEY_ENABLED=true
+      - CHAOS_MONKEY_MODE=critical
+      - CHAOS_MONKEY_LATENCY=true
+      - CHAOS_MONKEY_EXCEPTION=false
+      - CHAOS_MONKEY_APP_KILLER=true
+      - CHAOS_MONKEY_MEMORY=false
+```
+
+You can enable assaults in production setting this variables in your platform cluster runtime. For more information, [read the docs](https://github.com/msfidelis/gin-chaos-monkey)! 
+
 ## Author
 
 👤 **Matheus Fidelis**

@@ -7,7 +7,7 @@ import (
 )
 
 type Response struct {
-	Status int `json:"statys" binding:"required"`
+	Status int `json:"status" binding:"required"`
 }
 
 func Ok(c *gin.Context) {
