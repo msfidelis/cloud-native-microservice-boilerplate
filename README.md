@@ -123,6 +123,13 @@ You can enable chaos assaults in your app setting some environment variables in 
 
 You can enable assaults in production setting this variables in your platform cluster runtime. For more information, [read the docs](https://github.com/msfidelis/gin-chaos-monkey)! 
 
+
+### Swagger
+
+Access Swagger in `http://0.0.0.0/swagger/index.html`
+
+Swagger runs on production build on `Dockerfile`. 
+
 ## Author
 
 👤 **Matheus Fidelis**

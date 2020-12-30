@@ -12,6 +12,12 @@ type Response struct {
 	Version     string `json:"version" binding:"required"`
 }
 
+// Get godoc
+// @Summary Return 200 status Get in version
+// @Tags Version
+// @Produce json
+// @Success 200 {object} Response
+// @Router /version [get]
 func Get(c *gin.Context) {
 	configs := configuration.Load()
 

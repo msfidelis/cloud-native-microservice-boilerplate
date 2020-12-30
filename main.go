@@ -7,6 +7,8 @@ import (
 	chaos "github.com/msfidelis/gin-chaos-monkey"
 
 	"github.com/gin-gonic/gin"
+
+	_ "github.com/msfidelis/change-me/docs"
 )
 
 func main() {

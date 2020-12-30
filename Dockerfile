@@ -4,12 +4,14 @@ WORKDIR $GOPATH/src/change-me
 
 COPY . ./
 
-RUN go get -u
+RUN go get -u github.com/swaggo/swag/cmd/swag@v1.6.7
+RUN swag init
 
+RUN go get -u
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 
 
-FROM alpine:latest
+FROM alpine:3.12.3
 
 COPY --from=builder /go/src/change-me/main ./
 COPY --from=builder /go/src/change-me/configs ./configs
