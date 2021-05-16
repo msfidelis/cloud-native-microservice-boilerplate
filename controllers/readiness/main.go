@@ -1,10 +1,10 @@
 package readiness
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"github.com/msfidelis/change-me/pkg/logger"
 	"github.com/msfidelis/change-me/pkg/memory_cache"
+	"net/http"
 )
 
 type Response struct {
@@ -19,14 +19,24 @@ type Response struct {
 // @Router /readiness [get]
 func Ok(c *gin.Context) {
 	m := memory_cache.GetInstance()
-	var response Response
+	log := logger.Instance()
 
-	_, found := m.Get("readiness.ok")
-	if found {
+	var response Response
+	_, readiness_lock := m.Get("readiness.ok")
+
+	if readiness_lock {
 		response.Status = "NotReady"
+		log.Warn().
+			Str("status", response.Status).
+			Str("user_agent", c.Request.Header.Get("User-Agent")).
+			Msg("Liveness request probe failed")
 		c.JSON(http.StatusServiceUnavailable, response)
 	} else {
 		response.Status = "Ready"
+		log.Info().
+			Str("status", response.Status).
+			Str("user_agent", c.Request.Header.Get("User-Agent")).
+			Msg("Liveness request successful")
 		c.JSON(http.StatusOK, response)
 	}
 }
