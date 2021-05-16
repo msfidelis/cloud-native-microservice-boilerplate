@@ -3,6 +3,7 @@ module github.com/msfidelis/change-me
 go 1.15
 
 require (
+	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751
 	github.com/cpuguy83/go-md2man/v2 v2.0.0 // indirect
 	github.com/ghodss/yaml v1.0.0 // indirect
 	github.com/gin-gonic/gin v1.6.3
@@ -13,7 +14,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.1 // indirect
 	github.com/msfidelis/gin-chaos-monkey v0.0.4
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
-	github.com/swaggo/swag v1.6.7 // indirect
+	github.com/swaggo/swag v1.6.7
 	github.com/tkanos/gonfig v0.0.0-20181112185242-896f3d81fadf
 	github.com/urfave/cli/v2 v2.3.0 // indirect
 	github.com/zcalusic/sysinfo v0.0.0-20200228145645-a159d7cc708b
