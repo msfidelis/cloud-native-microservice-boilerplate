@@ -3,7 +3,11 @@ package main
 import (
 	"github.com/gin-contrib/logger"
 	"github.com/msfidelis/change-me/controllers/healthcheck"
+	"github.com/msfidelis/change-me/controllers/liveness"
+	"github.com/msfidelis/change-me/controllers/readiness"
 	"github.com/msfidelis/change-me/controllers/version"
+	"github.com/msfidelis/change-me/pkg/memory_cache"
+
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 
@@ -13,7 +17,10 @@ import (
 
 	_ "github.com/msfidelis/change-me/docs"
 
+	"fmt"
 	"os"
+	"strconv"
+	"time"
 )
 
 func main() {
@@ -23,16 +30,32 @@ func main() {
 		zerolog.SetGlobalLevel(zerolog.DebugLevel)
 	}
 
+	// logger
 	log.Logger = log.Output(
 		zerolog.ConsoleWriter{
 			Out:     os.Stderr,
 			NoColor: false,
 		},
 	)
-
-	// Custom logger
 	subLog := zerolog.New(os.Stdout).With().Logger()
 
+	// Memory Cache Singleton
+	c := memory_cache.GetInstance()
+
+	// Readiness Probe Mock Config - Warmup in Seconds
+	probe_time_raw := os.Getenv("READINESS_PROBE_MOCK_TIME_IN_SECONDS")
+	if probe_time_raw == "" {
+		probe_time_raw = "5" // 5 Seconds after boot to success readiness response ok
+	}
+	probe_time, err := strconv.ParseUint(probe_time_raw, 10, 64)
+	if err != nil {
+		fmt.Println("Environment variable READINESS_PROBE_MOCK_TIME_IN_SECONDS conversion error", err)
+	}
+
+	// Set time in Memory Cache
+	c.Set("readiness.ok", "false", time.Duration(probe_time)*time.Second)
+
+	// New Router
 	router := gin.New()
 
 	//Middlewares
@@ -45,11 +68,14 @@ func main() {
 		SkipPath: []string{"/skip"},
 	}))
 
-	// Healthcheck
+	// Healthcheck Router
 	router.GET("/healthcheck", healthcheck.Ok)
 
-	// Version
+	// Version Router
 	router.GET("/version", version.Get)
 
+	// Liveness and Readiness
+	router.GET("/liveness", liveness.Ok)
+	router.GET("/readiness", readiness.Ok)
 	router.Run()
 }
