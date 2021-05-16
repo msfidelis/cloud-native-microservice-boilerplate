@@ -77,5 +77,6 @@ func main() {
 	// Liveness and Readiness
 	router.GET("/liveness", liveness.Ok)
 	router.GET("/readiness", readiness.Ok)
+
 	router.Run()
 }
