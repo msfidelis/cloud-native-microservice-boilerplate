@@ -75,6 +75,8 @@ func main() {
 				Str("method", c.Request.Method).
 				Str("path", c.Request.URL.Path).
 				Dur("latency", latency).
+				Int("status", c.Writer.Status()).
+				Str("user_agent", c.Request.UserAgent()).
 				Logger()
 		}),
 	))
