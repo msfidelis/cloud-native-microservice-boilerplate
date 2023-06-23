@@ -1,8 +1,9 @@
-package logger
+package log
 
 import (
-	"github.com/rs/zerolog"
 	"os"
+
+	"github.com/rs/zerolog"
 )
 
 func Instance() zerolog.Logger {

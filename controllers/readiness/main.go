@@ -1,10 +1,11 @@
 package readiness
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/msfidelis/change-me/pkg/logger"
-	"github.com/msfidelis/change-me/pkg/memory_cache"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"github.com/msfidelis/change-me/pkg/log"
+	"github.com/msfidelis/change-me/pkg/memory_cache"
 )
 
 type Response struct {
@@ -19,7 +20,7 @@ type Response struct {
 // @Router /readiness [get]
 func Ok(c *gin.Context) {
 	m := memory_cache.GetInstance()
-	log := logger.Instance()
+	log := log.Instance()
 
 	var response Response
 	_, readiness_lock := m.Get("readiness.ok")
