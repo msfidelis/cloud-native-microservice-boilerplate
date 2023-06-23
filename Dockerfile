@@ -1,10 +1,10 @@
-FROM golang:1.15 AS builder
+FROM golang:1.19 AS builder
 
 WORKDIR $GOPATH/src/change-me
 
 COPY . ./
 
-RUN go get -u github.com/swaggo/swag/cmd/swag@v1.6.7
+RUN go install github.com/swaggo/swag/cmd/swag@v1.6.7
 RUN swag init
 
 RUN go get -u
